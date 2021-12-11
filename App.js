@@ -10,17 +10,23 @@ import Tabs from './navigation/tabs';
 import ProfileScreen from './screens/profiles/ProfileScreen';
 import Location from './screens/profiles/Location';
 import JobOrStudent from './screens/profiles/JobOrStudent';
+import ProfileImage from './screens/profiles/ProfileImage';
+
+import MemberView from './component/cart/MemberView';
 
 const switchNavigator=createSwitchNavigator({
-  
+  Tabs:Tabs,
+  MemberView:MemberView,
   SplashScreen:SplashScreen,
   RegistrationHome:RegistrationHome,
   Signin:Signin,
   Joinnow:Joinnow,
-  Tabs:Tabs,
+ 
   ProfileScreen:ProfileScreen,
   Location:Location,
+  ProfileImage:ProfileImage, 
   JobOrStudent:JobOrStudent,
+
 
 })
 

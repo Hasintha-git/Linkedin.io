@@ -23,7 +23,8 @@ export default class Post extends Component {
       imageName: '',
       postbody:'',
       uploadedImgUrl:'empty',
-      displayName:''
+      displayName:'',
+      userImg:'https://usergenerator.canekzapata.net/2e4566fd829bcf9eb11ccdb5f252b02f.jpeg'
 
     };
   }
@@ -58,7 +59,8 @@ export default class Post extends Component {
           postTime:firestore.Timestamp.fromDate(new Date()),
           like:null,
           comment:null,
-          displayName:this.state.displayName
+          displayName:this.state.displayName,
+          userImg:this.state.userImg
         })
         .then(()=> {
           alert('added success')
@@ -68,17 +70,18 @@ export default class Post extends Component {
           console.log('something went wrong !!');
         })
 
+        
   
 
   }
 
-  componentDidMount() {
-    this.getData()
+  async componentDidMount() {
+   await this.getData()
   }
 
-  getData = () => {
+  getData = async() => {
     try {
-      AsyncStorage.getItem('userData').then(value => {
+      await AsyncStorage.getItem('userData').then(value => {
         if (value != null) {
           let user = JSON.parse(value)
           this.setState({ displayName: user.displayName });
@@ -88,12 +91,26 @@ export default class Post extends Component {
     } catch (error) {
       console.log(error);
     }
+
+    try {
+      await AsyncStorage.getItem('userProfileImg').then(value => {
+        console.log(value);
+        if (value != null) {
+          let user = JSON.parse(value)
+          this.setState({ userImg: user.uploadedImgUrl });
+        }
+        console.log(this.state.userImg);
+      })
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   getimageFromGallery = () => {
     ImagePicker.openPicker({
-      width: 400,
-      height: 400,
+      width: 1200,
+      height: 1200,
       cropping: true
     }).then(image => {
       console.log(image.modificationDate);
@@ -160,9 +177,13 @@ export default class Post extends Component {
 
           {/* <Header/> */}
           <View style={styles.div1}>
-            <View style={styles.divimg}>
-              <Avatar.Image size={40} source={require('../../asserts/img/user.png')} />
-
+            <View style={{width:50,height:50,justifyContent:'center',alignItems:'center'}}>
+            <TouchableOpacity style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} onPress={this.getimageFromGallery} >
+            <Image
+                                style={{ width: '100%', height: '100%', opacity: 1,borderRadius:50 }}
+                                source={{ uri: this.state.userImg }}
+                            />
+                            </TouchableOpacity>
             </View>
 
             <View style={styles.divimgtxt}>
@@ -195,7 +216,7 @@ export default class Post extends Component {
             <View style={styles.divimgview}>
               <Image
 
-                style={{ width: '100%', height: '100%', borderRadius: 10 }}
+                style={{ width: '100%', height: '100%', borderRadius: 5 }}
                 source={{ uri: this.state.imagePath }}
 
               />
@@ -267,7 +288,9 @@ const styles = StyleSheet.create({
   div1: {
     width: '100%',
     height: 70,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent:'center',
+    alignItems:'center'
   },
   divscroll: {
     height: '100%',
@@ -283,6 +306,7 @@ const styles = StyleSheet.create({
     width: '75%',
     height: 70,
     flexDirection: 'column',
+    paddingLeft:20
 
   },
   divimgtxt1: {

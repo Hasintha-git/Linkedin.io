@@ -3,6 +3,8 @@ import { Text, StyleSheet, StatusBar, View, ActivityIndicator, Image } from 'rea
 import Icon from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity, FAB, Button,Switch , TextInput } from 'react-native-paper';
 import renderIf from 'render-if';
+import ProfileImage from './ProfileImage';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default class JobOrStudent extends Component {
     constructor(props) {
@@ -10,16 +12,77 @@ export default class JobOrStudent extends Component {
         this.state = {
          location:'',
          isSwitchOn:false,
-        studentDetails:false
+        studentDetails:false,
+        uni:'',
+        degree:'',
+        specialization:'',
+        jobTitle:'',
+        jobCompany:''
         };
     
       }
+
+      studentUni=(e)=> {
+        this.setState({ uni: e });
+      }
+
+      studentDeg=(e)=> {
+        this.setState({ degree: e });
+    }
+
+    studentSpe=(e)=> {
+        this.setState({ specialization: e });
+    }
+
+    jobTitle=(e)=> {
+        this.setState({ jobTitle: e });
+    }
+    jobCompany=(e)=> {
+        this.setState({ jobCompany: e });
+    }
     changeLocation = (e) => {
         this.setState({ location: e });
       }
 
 
       clickNext = () => {
+
+        if (this.state.isSwitchOn) {
+          console.log("true"+this.state.isSwitchOn);
+          try{
+            var user= {
+              uni:this.state.uni,
+              degree:this.state.degree,
+              specialization:this.state.specialization,
+              isstudent:true
+            }
+             AsyncStorage.setItem('userMore',JSON.stringify(user))
+            
+            this.props.navigation.navigate('ProfileImage')
+          }catch(error){
+            console.log(error);
+          }
+
+          
+        } else {
+
+          try{
+            var user= {
+              jobTitle:this.state.jobTitle,
+              jobCompany:this.state.jobCompany,
+              isstudent:false
+            }
+             AsyncStorage.setItem('userMore',JSON.stringify(user))
+            
+            this.props.navigation.navigate('ProfileImage')
+          }catch(error){
+            console.log(error);
+          }
+
+          
+          console.log("false"+this.state.isSwitchOn);
+        }
+    
         console.log(this.state.isSwitchOn);
       }
 
@@ -29,10 +92,14 @@ export default class JobOrStudent extends Component {
         });
         if(this.state.isSwitchOn){
             this.setState({
-                studentDetails:this.state.isSwitchOn,
+                studentDetails:false,
      
             });
-            console.log(this.state.isSwitchOn);
+        }else{
+            this.setState({
+                studentDetails:true,
+     
+            });
         }
 
       
@@ -62,7 +129,7 @@ export default class JobOrStudent extends Component {
           </View>
 
           <View style={{width:'100%',height:50,justifyContent:'flex-end',flexDirection:'row'}}>
-          <View style={{ paddingTop:15,position:'absolute',left:10}}>
+          <View style={{ paddingTop:15,position:'absolute',left:22}}>
                     <Text style={{color:'grey'}}>I'm a Student</Text>   
                 </View>
                 <View style={{ justifyContent:'center',alignItems:'flex-start'}}>
@@ -82,8 +149,16 @@ export default class JobOrStudent extends Component {
           {renderIf(this.state.studentDetails)(
                 <View style={{justifyContent:'center',alignItems:'center'}}>
           <TextInput style={styles.input1}
-              label="enter your Edu"
-              onChange={(val) => this.changeLocation(val.nativeEvent.text)}
+              label="Univercity or School"
+              onChange={(val) => this.studentUni(val.nativeEvent.text)}
+            />
+             <TextInput style={styles.input1}
+              label="Degree"
+              onChange={(val) => this.studentDeg(val.nativeEvent.text)}
+            />
+             <TextInput style={styles.input1}
+              label="Specialization"
+              onChange={(val) => this.studentSpe(val.nativeEvent.text)}
             />
           </View>
                 )}
@@ -91,8 +166,12 @@ export default class JobOrStudent extends Component {
 {renderIf(!this.state.studentDetails)(
        <View style={{justifyContent:'center',alignItems:'center'}}>
        <TextInput style={styles.input1}
-           label="enter your Job"
-           onChange={(val) => this.changeLocation(val.nativeEvent.text)}
+           label="Job Title*"
+           onChange={(val) => this.jobTitle(val.nativeEvent.text)}
+         />
+          <TextInput style={styles.input1}
+           label="Company*"
+           onChange={(val) => this.jobCompany(val.nativeEvent.text)}
          />
        </View>
 )}

@@ -169,7 +169,7 @@ export default class Joinnow extends Component {
     }
      AsyncStorage.setItem('userData',JSON.stringify(user))
     
-    this.props.navigation.navigate('Tabs')
+    this.props.navigation.navigate('Location')
   }catch(error){
     console.log(error);
   }

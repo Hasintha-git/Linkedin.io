@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, View, TouchableOpacity, Image  } from 'react-
 import { Avatar, TextInput, Appbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 import renderIf from 'render-if';
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
 // import DrawerSider from './DrawerSider'
 // import { createDrawerNavigator } from '@react-navigation/drawer';
 // import { NavigationContainer } from '@react-navigation/native';
@@ -18,8 +18,24 @@ export default class Header extends Component {
             display1: true,
             display2: false,
             active: 'first',
-            imgPath: '../../asserts/img/user.png'
+            userImg:'https://usergenerator.canekzapata.net/2e4566fd829bcf9eb11ccdb5f252b02f.jpeg',
         };
+    }
+
+    async componentDidMount(){
+        try {
+            await AsyncStorage.getItem('userProfileImg').then(value => {
+              console.log(value);
+              if (value != null) {
+                let user = JSON.parse(value)
+                this.setState({ userImg: user.uploadedImgUrl });
+              }
+              console.log(this.state.userImg);
+            })
+      
+          } catch (error) {
+            console.log(error);
+          }
     }
 
     onFocusSearch = () => {
@@ -55,8 +71,8 @@ export default class Header extends Component {
                         <TouchableOpacity style={styles.Avatar} onPress={this.profile}>
                           
                             <Image
-                                style={{ width: '100%', height: '100%' }}
-                                source={require(img)}
+                                style={{ width: '100%', height: '100%',borderRadius:50 }}
+                                source={{ uri: this.state.userImg }}
                             />
                             {/* <Icon name="person-circle" size={28} color="gray"/> */}
                         </TouchableOpacity>

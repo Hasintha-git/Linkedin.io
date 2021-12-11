@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, StyleSheet, StatusBar, View, ActivityIndicator, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity, FAB, Button,Paragraph, TextInput } from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default class Location extends Component {
     constructor(props) {
@@ -18,7 +19,16 @@ export default class Location extends Component {
 
 
       clickNext = () => {
-        this.props.navigation.navigate('JobOrStudent')
+        try{
+          var user= {
+            location:this.state.location,
+          }
+           AsyncStorage.setItem('location',JSON.stringify(user))
+          
+          this.props.navigation.navigate('JobOrStudent')
+        }catch(error){
+          console.log(error);
+        }
       }
   render() {
     return (
