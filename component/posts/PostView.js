@@ -10,8 +10,8 @@ export default class PostView extends Component {
     super(props);
     this.state = {
       email: 'sample@gmail.com',
-      url: '../../asserts/img/user.png',
-      imagePath: '../../asserts/img/user.png',
+      url: 'https://usergenerator.canekzapata.net/2e4566fd829bcf9eb11ccdb5f252b02f.jpeg',
+      imagePath: 'https://usergenerator.canekzapata.net/2e4566fd829bcf9eb11ccdb5f252b02f.jpeg',
       imageName: '',
       postbody: 'Lorem ipsum dolor sit amet, in quo dolorum ponderum, nam veri molestie constituto eu. Eum enim tantas sadipscing ne, ut omnes malorum nostrum cum. Errem populo qui ne, ea ipsum antiopam definitionem eos.',
       uploadedImgUrl: 'https://firebasestorage.googleapis.com/v0/b/linkedin-clone-3b2b2.appspot.com/o/images%2F1638555468000.jpg?alt=media&token=448ef527-1ad9-4902-b371-7e2bda62b8b5',
@@ -20,11 +20,11 @@ export default class PostView extends Component {
       cmntbtn: 'chatbox-outline',
       allLikes: 0,
       allCmnt: 0,
-      userImage: '../../asserts/img/user.png',
+      userImage: 'https://usergenerator.canekzapata.net/2e4566fd829bcf9eb11ccdb5f252b02f.jpeg',
       postList: [],
       postCount: 0,
-      postId:[],
-      liked:false
+      postId: [],
+      liked: false
 
     };
   }
@@ -42,7 +42,7 @@ export default class PostView extends Component {
           postCount: querySnapshot.size
         })
         let posts = []
-        let postId=[]
+        let postId = []
         querySnapshot.forEach(documentSnapshot => {
           postId.push(documentSnapshot.id)
           posts.push(documentSnapshot.data())
@@ -54,11 +54,11 @@ export default class PostView extends Component {
         this.setState({
           postList: posts,
         })
-  
+
       }).then(error => {
         console.log(error);
       })
-      
+
     console.log(this.state.postList);
     //= ========================================
   }
@@ -66,12 +66,12 @@ export default class PostView extends Component {
 
 
   likePress = (user) => {
-    
+
     this.setState({
       likebtn: 'thumbs-up'
     })
 
-    if (!this.state.liked ) {
+    if (!this.state.liked) {
       this.setState({
         allLikes: this.state.allLikes + 1
       })
@@ -84,19 +84,19 @@ export default class PostView extends Component {
 
   }
 
-  updateLike=(user)=> {
+  updateLike = (user) => {
     firestore()
-  .collection('posts')
-  .doc(user)
-  .update({
-    like: this.state.allLikes,
-  })
-  .then(() => {
-    this.setState({
-      liked:false
-    })
-    console.log('like updated!'+user);
-  });
+      .collection('posts')
+      .doc(user)
+      .update({
+        like: this.state.allLikes,
+      })
+      .then(() => {
+        this.setState({
+          liked: false
+        })
+        console.log('like updated!' + user);
+      });
   }
 
 
@@ -110,18 +110,23 @@ export default class PostView extends Component {
 
 
   render() {
- 
+
     const img = '../../asserts/img/user.png'
     return (
 
       <>
-        {this.state.postList.map((postList,index) => <View style={styles.container} key={this.state.postId[index]} >
-          
+        {this.state.postList.map((postList, index) => <View style={styles.container} key={this.state.postId[index]} >
+
           {/* user details  */}
           <View style={styles.div1} >
 
             <View style={styles.divimg}>
-              <Avatar.Image size={40} source={require(img)} />
+              <TouchableOpacity style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} >
+                <Image
+                  style={{ width: '100%', height: '100%', opacity: 1, borderRadius: 50 }}
+                  source={{ uri: postList.userImg }}
+                />
+              </TouchableOpacity>
             </View>
 
             <View style={styles.divimgtxt}>
@@ -131,7 +136,7 @@ export default class PostView extends Component {
               <View style={styles.divimgtxt2}>
                 <View style={{ flexDirection: 'row', height: '60%', justifyContent: 'space-around', alignItems: 'center' }}>
                   <Text style={{ fontSize: 12, color: 'black' }}>  {postList.postTime.toDate().toISOString()}</Text>
-                
+
                   <Icon name="globe" size={14} color="#900" style={{ paddingLeft: 10 }} />
                 </View>
               </View>
@@ -144,7 +149,7 @@ export default class PostView extends Component {
             numberOfLines={1}
             renderViewMore={this.renderViewMore}
             renderViewLess={this.renderViewLess}
-            textStyle={{ textAlign: 'left',paddingLeft:10, color: 'black' }}
+            textStyle={{ textAlign: 'left', paddingLeft: 10, color: 'black' }}
 
           >
             <Text>
@@ -248,6 +253,8 @@ const styles = StyleSheet.create({
   div1: {
     width: '100%',
     height: 70,
+    paddingLeft: 10,
+    alignItems: 'center',
     flexDirection: 'row'
   },
   divscroll: {
@@ -255,8 +262,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   divimg: {
-    width: '25%',
-    height: 70,
+    width: 50,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -264,6 +271,7 @@ const styles = StyleSheet.create({
     width: '75%',
     height: 70,
     flexDirection: 'column',
+    paddingLeft: 10
 
   },
   divimgtxt1: {
