@@ -10,7 +10,7 @@ import Post from '../screens/post/Post';
 import Notification from '../screens/Notification/Notification';
 import Jobs from '../screens/jobs/Jobs';
 import Header from '../component/header/Header';
-
+import ProfileScreen from '../screens/profiles/ProfileScreen';
 
 
 const Tab = createBottomTabNavigator();
@@ -54,9 +54,9 @@ class Tabs extends Component {
     render() {
  
         return (
-            <>
+         
 
-                <NavigationContainer style={styles.MainView} >
+                <View style={styles.MainView} >
                     <StatusBar barStyle="dark-content" backgroundColor="white"/>
 
                     {/* <Header/> */}
@@ -87,6 +87,8 @@ class Tabs extends Component {
                                     </View>
                                 ),
                             }} />
+
+
                         <Tab.Screen name="MyNetwork" component={MyNetwork}
                             options={{
                                 headerShown: false,
@@ -154,9 +156,9 @@ class Tabs extends Component {
 
 
 
-                </NavigationContainer>
+                </View>
 
-            </>
+         
         );
     }
 }

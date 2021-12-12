@@ -18,6 +18,7 @@ export default class SplashScreen extends Component {
   }
 
   getSavedStorage=()=> {
+    console.log("getSavedStorage");
     try{
         AsyncStorage.getItem('userData').then(value=>{
             if (value!=null) {
@@ -38,6 +39,7 @@ export default class SplashScreen extends Component {
 }
 
 getDataToFirebase=()=> {
+  console.log(this.state.email+"  "+this.state.password);
   auth()
   .signInWithEmailAndPassword(this.state.email, this.state.password)
   .then((user) => { 

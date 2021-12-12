@@ -57,7 +57,7 @@ export default class RegistrationHome extends Component {
       const userinfo = auth().signInWithCredential(googleCredential);
       console.log((await userinfo).user);
 
-      this.props.navigation.navigate('Tabs')
+      this.props.navigation.navigate('Location')
     
   }
 
