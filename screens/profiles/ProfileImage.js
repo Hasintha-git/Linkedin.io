@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import renderIf from 'render-if';
+import auth from '@react-native-firebase/auth';
 
 export default class ProfileImage extends Component {
     constructor(props) {
@@ -103,7 +104,7 @@ export default class ProfileImage extends Component {
          updateTime:firestore.Timestamp.fromDate(new Date()),
           })
           .then(()=> {
-            alert('added success')
+          
             this.props.navigation.navigate('Tabs')
             console.log('user details saved!');
           })
@@ -124,7 +125,7 @@ export default class ProfileImage extends Component {
          updateTime:firestore.Timestamp.fromDate(new Date()),
           })
           .then(()=> {
-            alert('added success')
+            
             this.props.navigation.navigate('Tabs')
             console.log('user details saved!');
           })
@@ -134,8 +135,7 @@ export default class ProfileImage extends Component {
           })
         }
           
-        
-        
+    
 
       }
 

@@ -65,7 +65,11 @@ export default class MemberCart extends Component {
 
                 <View style={styles.nameBox}>
                     <Text style={styles.name}>{userList.displayName}</Text>
+
+ 
                     <Text style={styles.whatTodo}>{userList.jobTitle} at {userList.jobCompany}</Text>
+                        
+                
 
                     <Text style={styles.work}>{userList.jobCompany}</Text>
                 </View>
@@ -138,7 +142,8 @@ const styles = StyleSheet.create({
     },
     whatTodo: {
         color: 'grey',
-        fontSize: 13
+        fontSize: 13,
+        textAlign:'center'
     },
     work: {
         color: 'grey',
@@ -166,7 +171,9 @@ const styles = StyleSheet.create({
     btnSection: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100%'
+        width: '100%',
+        position:'absolute',
+        bottom:10
     }
 
 })

@@ -23,6 +23,11 @@ export default class Header extends Component {
     }
 
     async componentDidMount(){
+    
+          await this.getData()
+    }
+
+    getData= async()=> {
         try {
             await AsyncStorage.getItem('userProfileImg').then(value => {
               console.log(value);
@@ -56,14 +61,14 @@ export default class Header extends Component {
     }
 
     profile = () => {
-
+        this.props.navigation.navigate('ProfileScreen')
 
     }
 
 
     render() {
 
-        const img = '../../asserts/img/user.png'
+
         return (
 
             <SafeAreaView style={styles.Header}>
@@ -72,7 +77,7 @@ export default class Header extends Component {
                           
                             <Image
                                 style={{ width: '100%', height: '100%',borderRadius:50 }}
-                                source={{ uri: this.state.userImg }}
+                                source={{uri: this.state.userImg}}
                             />
                             {/* <Icon name="person-circle" size={28} color="gray"/> */}
                         </TouchableOpacity>

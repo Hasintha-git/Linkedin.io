@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, StatusBar, View, ActivityIndicator, Image } from 'react-native';
+import { Text, StyleSheet, StatusBar, View, ActivityIndicator, Image, KeyboardAvoidingView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity, FAB, Button,Switch , TextInput } from 'react-native-paper';
 import renderIf from 'render-if';
@@ -146,7 +146,9 @@ export default class JobOrStudent extends Component {
               
 
           </View>
+          
           {renderIf(this.state.studentDetails)(
+            <KeyboardAvoidingView>
                 <View style={{justifyContent:'center',alignItems:'center'}}>
           <TextInput style={styles.input1}
               label="Univercity or School"
@@ -161,9 +163,11 @@ export default class JobOrStudent extends Component {
               onChange={(val) => this.studentSpe(val.nativeEvent.text)}
             />
           </View>
+          </KeyboardAvoidingView>
                 )}
 
 {renderIf(!this.state.studentDetails)(
+  <KeyboardAvoidingView>
        <View style={{justifyContent:'center',alignItems:'center'}}>
        <TextInput style={styles.input1}
            label="Job Title*"
@@ -174,8 +178,10 @@ export default class JobOrStudent extends Component {
            onChange={(val) => this.jobCompany(val.nativeEvent.text)}
          />
        </View>
+       </KeyboardAvoidingView>
 )}
-          <View style={{justifyContent:'center',alignItems:'center',bottom:20,position:'absolute',width:'100%'}}>
+
+          <View style={{justifyContent:'center',alignItems:'center',top:50,position:'absolute',width:'100%',position:'relative'}}>
           <Button style={styles.btn1} mode="contained" onPress={this.clickNext}
             >
               Next
