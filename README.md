@@ -32,21 +32,21 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="https://github.com/Hasintha-git/Linkedin.io/images/1.png" />
-<img src="https://github.com/Hasintha-git/Linkedin.io/images/2.png" />
-<img src="https://github.com/Hasintha-git/Linkedin.io/images/3.png" />
-<img src="https://github.com/Hasintha-git/Linkedin.io/images/4.png" />
-<img src="https://github.com/Hasintha-git/Linkedin.io/images/5.png" />
-<img src="https://github.com/Hasintha-git/Linkedin.io/images/6.png" />
-<img src="https://github.com/Hasintha-git/Linkedin.io/images/7.png" />
-<img src="https://github.com/Hasintha-git/Linkedin.io/images/8.png" />
-<img src="https://github.com/Hasintha-git/Linkedin.io/images/9.png" />
-<img src="https://github.com/Hasintha-git/Linkedin.io/images/10.png" />
-<img src="https://github.com/Hasintha-git/Linkedin.io/images/11.png" />
-<img src="https://github.com/Hasintha-git/Linkedin.io/images/12.png" />
-<img src="https://github.com/Hasintha-git/Linkedin.io/images/13.png" />
-<img src="https://github.com/Hasintha-git/Linkedin.io/images/14.png" />
-<img src="https://github.com/Hasintha-git/Linkedin.io/images/15.png" />
+<img src="https://github.com/Hasintha-git/Linkedin.io/blob/main/images/1.png" />
+<img src="https://github.com/Hasintha-git/Linkedin.io/blob/main/images/2.png" />
+<img src="https://github.com/Hasintha-git/Linkedin.io/blob/main/images/3.png" />
+<img src="https://github.com/Hasintha-git/Linkedin.io/blob/main/images/4.png" />
+<img src="https://github.com/Hasintha-git/Linkedin.io/blob/main/images/5.png" />
+<img src="https://github.com/Hasintha-git/Linkedin.io/blob/main/images/6.png" />
+<img src="https://github.com/Hasintha-git/Linkedin.io/blob/main/images/7.png" />
+<img src="https://github.com/Hasintha-git/Linkedin.io/blob/main/images/8.png" />
+<img src="https://github.com/Hasintha-git/Linkedin.io/blob/main/images/9.png" />
+<img src="https://github.com/Hasintha-git/Linkedin.io/blob/main/images/10.png" />
+<img src="https://github.com/Hasintha-git/Linkedin.io/blob/main/images/11.png" />
+<img src="https://github.com/Hasintha-git/Linkedin.io/blob/main/images/12.png" />
+<img src="https://github.com/Hasintha-git/Linkedin.io/blob/main/images/13.png" />
+<img src="https://github.com/Hasintha-git/Linkedin.io/blob/main/images/14.png" />
+<img src="https://github.com/Hasintha-git/Linkedin.io/blob/main/images/15.png" />
 
 LinkedIn Clone Mobile Application 
 
@@ -78,7 +78,7 @@ _Below is an example of how you can instruct your audience on installing and set
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/Hasintha-git/Linkedin.io
    ```
 2. Install NPM packages
    ```sh
