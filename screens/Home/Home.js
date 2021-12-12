@@ -6,7 +6,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import PostView from '../../component/posts/PostView';
 import { Avatar, Card, TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
-
 import renderIf from 'render-if';
 
 export default class Home extends Component {
@@ -141,33 +140,16 @@ export default class Home extends Component {
 
             </View>
           )}
-
-
-
         </SafeAreaView>
-        {/* <ScrollView style={styles.PostView}>
-        <PostView/>
-         
-        </ScrollView> */}
+
         <View style={styles.PostView}>
           <FlatList
             data={PostView}
             renderItem={({ item }) => <PostView item={item} />}
-            // keyExtractor={item=>item.id}
             showsVerticalScrollIndicator={false}
-          // refreshing={this.state.refreshing}
-          // onRefresh={this.hadleRefresh}
           >
-
           </FlatList>
         </View>
-
-
-
-
-
-
-
       </SafeAreaView>
 
     )
@@ -176,15 +158,13 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height:'95%',
+    height: '95%',
     alignItems: 'center',
     width: '100%'
-
   },
   PostView: {
     width: '100%',
     backgroundColor: 'grey'
-
   },
   Header: {
     width: '100%',
@@ -193,8 +173,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
     padding: 5,
-    // paddingBottom:5
-
   },
   Avatar: {
     width: 30,
@@ -206,7 +184,6 @@ const styles = StyleSheet.create({
   },
   search: {
     height: 37
-
   },
   input: {
     width: '100%',
